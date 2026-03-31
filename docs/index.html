@@ -519,14 +519,14 @@ tbody td { padding: 14px 18px; vertical-align: middle; }
       <span class="brand-tag">Admin</span>
     </div>
     <nav>
-      <button onclick="showTab('dashboard',this)">Dashboard</button>
-      <button class="active" onclick="showTab('techs',this)">Techs</button>
+      <button class="active" onclick="showTab('dashboard',this)">Dashboard</button>
+      <button onclick="showTab('techs',this)">Techs</button>
       <button onclick="showTab('settings',this)">Settings</button>
     </nav>
     <button class="btn-signout" onclick="logout()">Sign out</button>
   </header>
   <main>
-    <div class="tab" id="tab-dashboard">
+    <div class="tab active" id="tab-dashboard">
       <div class="stats">
         <div class="stat s-red"><div class="lbl">Expired</div><div class="num" id="s-expired">—</div></div>
         <div class="stat s-orange"><div class="lbl">Expiring ≤ 30 days</div><div class="num" id="s-soon">—</div></div>
@@ -536,7 +536,7 @@ tbody td { padding: 14px 18px; vertical-align: middle; }
       <div class="sec"><div><h2>Active Alerts</h2><p>Credentials needing attention today</p></div><button class="btn btn-outline" onclick="render()">↻ Refresh</button></div>
       <div class="alert-list" id="alert-list"><div class="empty">Loading…</div></div>
     </div>
-    <div class="tab active" id="tab-techs">
+    <div class="tab" id="tab-techs">
       <div class="sec">
         <div><h2>Tech Roster</h2><p>Manage credential expiration dates</p></div>
         <div style="display:flex;gap:8px">
