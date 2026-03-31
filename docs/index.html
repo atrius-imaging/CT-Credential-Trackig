@@ -632,18 +632,23 @@ let TECHS = [
 document.getElementById("pw").addEventListener("keydown", e => { if (e.key === "Enter") doLogin(); });
 function doLogin() {
   if (document.getElementById("pw").value === ADMIN_PASSWORD) {
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("app").style.display = "block";
-    document.getElementById("s-token").value = ghToken;
-    document.getElementById("s-repo").value = ghRepo;
-    if (!ghToken) document.getElementById("github-banner").style.display = "flex";
-    render();
+    localStorage.setItem("admin_authed", "1");
+    showApp();
   } else {
     document.getElementById("login-err").style.display = "block";
     document.getElementById("pw").value = "";
   }
 }
-function logout() { document.getElementById("app").style.display = "none"; document.getElementById("login-screen").style.display = "flex"; document.getElementById("pw").value = ""; }
+function showApp() {
+  document.getElementById("login-screen").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  document.getElementById("s-token").value = ghToken;
+  document.getElementById("s-repo").value = ghRepo;
+  if (!ghToken) document.getElementById("github-banner").style.display = "flex";
+  render();
+}
+function logout() { localStorage.removeItem("admin_authed"); document.getElementById("app").style.display = "none"; document.getElementById("login-screen").style.display = "flex"; document.getElementById("pw").value = ""; }
+if (localStorage.getItem("admin_authed") === "1") showApp();
 function showTab(name, btn) {
   document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
   document.querySelectorAll("header nav button").forEach(b => b.classList.remove("active"));
